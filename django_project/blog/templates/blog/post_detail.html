@@ -85,11 +85,18 @@
         <p>{{ post.content }}</p>
         {% if post.file_upload %}
             <a href="{{ post.file_upload.url }}" class="btn btn-primary">첨부파일 다운로드</a>
-        {% endif %}
 
         {{ post.get_file_name }}
-
+        {% endif %}
         <hr>
+
+        {% if post.tag.exists %}
+            <i class = "fas fa-tags">
+            {% for tag in post.tag.iterator %}
+                <a href="{{ tag.get_absolute_url }}">{{ tag }}</a>
+            {% endfor %}
+            </i>
+        {% endif %}
 
         <!-- Comments Form -->
         <div class="card my-4">
