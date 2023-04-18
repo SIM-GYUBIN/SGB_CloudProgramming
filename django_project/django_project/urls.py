@@ -25,6 +25,7 @@ urlpatterns = [
     path('blog/', include('blog.urls')),
     path('admin/', admin.site.urls),
     path('', include('single_pages.urls')),
+    path('markdownx/', include('markdownx.urls'))
 ]
 
 #장고 프로젝트 밖의 폴더에 접근하기 위해서 정적인 방식을 사용할 것이당
