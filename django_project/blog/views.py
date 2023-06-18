@@ -26,7 +26,7 @@ def index(request):
         'posts': posts,
     })
 
-class PostCreate(LoginRequiredMixin,UserPassesTestMixin, CreateView):
+class PostCreate(LoginRequiredMixin, CreateView):
     model = Post
     fields = ['title', 'content', 'head_image', 'file_upload', 'category', 'tag']
 
@@ -35,7 +35,7 @@ class PostCreate(LoginRequiredMixin,UserPassesTestMixin, CreateView):
 
     def form_valid(self, form):
         # 로그인 되어 있다면
-        if self.request.user.is_authenticated and (self.request.user.is_staff or self.request.user.is_superuser) :
+        if self.request.user.is_authenticated :
             # author를 임의로 추가함
             form.instance.author = self.request.user
             return super(PostCreate, self).form_valid(form)
@@ -63,7 +63,6 @@ class PostList(ListView):
 
 class PostDetail(DetailView):
     model = Post
-
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super(PostDetail, self).get_context_data()
         context['categories'] = Category.objects.all()

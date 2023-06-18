@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 import os.path
+# import dj_database_url
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -25,7 +26,7 @@ SECRET_KEY = 'django-insecure-d$jmsf6kq^t450awq3+8+$%!2a-j3_az@_$c+5+f^detayslh3
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -37,13 +38,24 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
     'blog',
     'single_pages',
+    'memo',
     'crispy_forms',
     'crispy_bootstrap4',
     'markdownx',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'django_cron',
+    'django_apscheduler',
+    # 'memo.apps.MemoConfig',
+
+    'allauth.socialaccount.providers.google'
 
 ]
+SCHEDULER_AUTOSTART = True
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -53,6 +65,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    "whitenoise.middleware.WhiteNoiseMiddleware"
 ]
 
 ROOT_URLCONF = 'django_project.urls'
@@ -85,6 +98,16 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'mysql.connector.django',
+#         'NAME': 'op_c0bafd56_5064_467c_898d_b4d2ba6357d4',
+#         'USER': 'dc3891b7255675df',
+#         'PASSWORD': '10759b2f815de0b6',
+#         'HOST': '115.68.198.187',
+#         'PORT': '13307',
+#     }
+# }
 
 
 # Password validation
@@ -122,6 +145,7 @@ USE_TZ = False
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
 STATIC_URL = 'static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 
 MEDIA_URL = 'media/'
@@ -133,3 +157,27 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+
+# Authentication
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend'
+)
+SITE_ID = 2
+
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_EMAIL_VERIFICATION = 'none'
+LOGIN_REDIRECT_URL='/blog/'
+
+# Celery 설정
+CELERY_BROKER_URL = 'redis://localhost:6379'  # Redis Broker URL (Redis가 설치되어 있어야 함)
+CELERY_RESULT_BACKEND = 'redis://localhost:6379'  # Redis Backend URL
+
+# Celery Beat 설정
+CELERY_BEAT_SCHEDULE = {
+    'send_kakao_message_task': {
+        'task': 'memo.tasks.send_kakao_message_task',
+        'schedule': 60,  # 1분마다 실행 (원하는 주기로 변경 가능)
+    },
+}

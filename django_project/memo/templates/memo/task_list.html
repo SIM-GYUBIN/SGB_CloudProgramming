@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Task Manager - Task List</title>
+</head>
+<body>
+    <h1>Task List</h1>
+<ul>
+    {% for task in tasks %}
+    <li>
+        {{ task.title }} - {{ task.time }}
+        {% if task.is_notified %}
+            <span style="color: green;">(시간 지났음)</span>
+        {% endif %}
+        <a href="{% url 'memo:delete_task' task_id=task.id %}">Delete</a>
+    </li>
+    {% endfor %}
+</ul>
+    <a href="{% url 'memo:add_task' %}">Add Task</a>
+</body>
+</html>
