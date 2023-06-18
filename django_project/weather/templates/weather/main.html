@@ -22,6 +22,7 @@
             <div class="columns">
                 <div class="column is-offset-4 is-4">
                     <form method="POST">
+                        {% csrf_token %}
                         <div class="field has-addons">
                             <div class="control is-expanded">
                                 {{ form.name }}
@@ -54,9 +55,10 @@
                                     <p>
                                         <span class="title">{{ weather.city }}</span>
                                         <br>
-                                        <span class="subtitle">{{ weather.temperature }}</span>
+                                        <span class="subtitle">{{ weather.temperature }} °C</span>
                                         <br> {{ weather.description }}
                                     </p>
+                                    <a href="{% url 'weather:delete_city' city_id=weather.city %}">삭제</a>
                                 </div>
                             </div>
                         </article>

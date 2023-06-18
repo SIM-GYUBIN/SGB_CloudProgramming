@@ -1,20 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.4/css/bulma.css"/>
     <meta charset="UTF-8">
     <title>메인페이지</title>
+    <style>
+        .centered {
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        .button-group {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .button-group .button:not(:last-child) {
+            margin-right: 50px;
+        }
+    </style>
 </head>
 <body>
-    <nav><a href="/blog/">BLOG</a></nav>
-    <nav><a href="/memo/">MEMO</a></nav>
-    <nav><a href="/weather/">WEATHER</a></nav>
-    <h1>클라우드프로그래밍 잼</h1>
-    {% for post in recent_posts %}
-        <div>
-            <h4><a href="{{ post.get_absolute_url }}">{{ post.title }} by {{ post.author }}</a></h4>
-            <p>{{ post.get_content_markdown |truncatewords:30 |safe }}</p>
-        </div>
-    {% endfor %}
+<div class="container">
+    <div class="notification is-primary" style="text-align: center;">
+        <h3 class="title is-3">심규빈 클라우드 프로그래밍</h3>
+    </div>
+</div>
+
+<div class="centered">
+    <div class="button-group buttons are-large">
+        <button class="button is-info" onclick="location.href='/blog/'">BLOG</button>
+        <button class="button is-success" onclick="location.href='/memo/'">MEMO</button>
+        <button class="button is-warning" onclick="location.href='/weather/'">WEATHER</button>
+    </div>
+</div>
 
 </body>
 </html>

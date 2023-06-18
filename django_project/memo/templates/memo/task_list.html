@@ -2,29 +2,56 @@
 <html>
 <head>
     <title>Task Manager - Task List</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.css"/>
+    <style>
+        .container {
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        .task-list {
+            margin-bottom: 20px;
+        }
+    </style>
 </head>
 <body>
-    <section class="hero is-info">
-        <div class="hero-body">
-            <div class="container">
-                <h1 class="title">TO DO LIST 카톡 알림 서비스</h1>
-            </div>
+<section class="hero is-info">
+    <div class="hero-body">
+        <div class="container">
+            <h1 class="title">TO DO LIST 카톡 알림 서비스</h1>
         </div>
-    </section>
-    <h3>당신의 오늘 해야 할 일을 추가해 보세요 !</h3>
-    <h3>시간에 맞춰 카톡 알림을 보내드립니다.</h3>
-<ul>
-    {% for task in tasks %}
-    <li>
-        {{ task.title }} - {{ task.time }}
-        {% if task.is_notified %}
-            <span style="color: green;">(시간 지났음)</span>
-        {% endif %}
-        <a href="{% url 'memo:delete_task' task_id=task.id %}">Delete</a>
-    </li>
-    {% endfor %}
-</ul>
+    </div>
+</section>
+
+<div class="container">
+    <article class="message is-primary">
+        <div class="message-header">
+            <p>사용법</p>
+        </div>
+        <div class="message-body">
+            당신의 오늘 해야 할 일을 추가해 보세요 !
+            시간에 맞춰 카톡 알림을 보내드립니다.
+        </div>
+    </article>
+
+    <div class="task-list">
+        <h4 class="title is-4">할 일 목록</h4>
+        <ul>
+            {% for task in tasks %}
+                <div class="box">
+                    <li>
+                        {{ task.title }} - {{ task.time }}
+                        {% if task.is_notified %}
+                            <span style="color: green;">(시간 지났음)</span>
+                        {% endif %}
+                        <a href="{% url 'memo:delete_task' task_id=task.id %}">삭제</a>
+                    </li>
+                </div>
+            {% endfor %}
+        </ul>
+    </div>
     <button class="button is-success" type="button" onclick="location.href='{% url 'memo:add_task' %}'">할 일 등록</button>
+</div>
+
 </body>
 </html>
