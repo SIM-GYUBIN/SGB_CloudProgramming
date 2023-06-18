@@ -24,6 +24,7 @@ from django.conf import settings
 urlpatterns = [
     path('blog/', include('blog.urls')),
     path('memo/', include('memo.urls')),
+    path('weather/', include('weather.urls')),
     path('admin/', admin.site.urls),
     path('markdownx/', include('markdownx.urls')),
     path('accounts/', include('allauth.urls')),

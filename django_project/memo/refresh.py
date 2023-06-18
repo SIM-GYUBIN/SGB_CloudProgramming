@@ -9,7 +9,7 @@ def refresh():
     }
     response = requests.post(url, data=data)
     tokens = response.json()
-    # print(response.json())
+
 
     with open("memo/kakao_code.json","w") as fp:
         json.dump(tokens, fp)

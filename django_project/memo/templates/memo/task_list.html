@@ -2,9 +2,18 @@
 <html>
 <head>
     <title>Task Manager - Task List</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.css" />
 </head>
 <body>
-    <h1>Task List</h1>
+    <section class="hero is-info">
+        <div class="hero-body">
+            <div class="container">
+                <h1 class="title">TO DO LIST 카톡 알림 서비스</h1>
+            </div>
+        </div>
+    </section>
+    <h3>당신의 오늘 해야 할 일을 추가해 보세요 !</h3>
+    <h3>시간에 맞춰 카톡 알림을 보내드립니다.</h3>
 <ul>
     {% for task in tasks %}
     <li>
@@ -16,6 +25,6 @@
     </li>
     {% endfor %}
 </ul>
-    <a href="{% url 'memo:add_task' %}">Add Task</a>
+    <button class="button is-success" type="button" onclick="location.href='{% url 'memo:add_task' %}'">할 일 등록</button>
 </body>
 </html>

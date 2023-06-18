@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'blog',
     'single_pages',
     'memo',
+    'weather',
     'crispy_forms',
     'crispy_bootstrap4',
     'markdownx',

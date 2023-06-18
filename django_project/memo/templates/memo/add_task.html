@@ -1,15 +1,64 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.css" />
     <title>Task Manager - Add Task</title>
 </head>
 <body>
-    <h1>Add Task</h1>
+    <section class="hero">
+        <div class="hero-body">
+            <div class="container">
+                <h1 class="title">할 일 추가하기</h1>
+            </div>
+        </div>
+    </section>
     <form method="POST">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Add</button>
+        <div class="container is-max-desktop">
+            {% csrf_token %}
+            {% if form.errors %}
+            <div class="alert alert-danger" role="alert">
+            {% for field in form %}
+            {% if field.errors %}
+            <div>
+                <strong>{{ field.label }}</strong>
+                {{ field.errors }}
+            </div>
+            {% endif %}
+            {% endfor %}
+            </div>
+        {% endif %}
+
+        <div class="block">
+            <label for="subject" class="label">할 일</label>
+            <input type="text" class="input" name="title" id="title" placeholder="설거지"
+                   value="">
+        </div>
+
+        <div class="block">
+            <label for="content" class="label">시간</label>
+            <input type="text" class="input" name="time" id="time" placeholder="18:00"
+                   value="{{ form.subject.value|default_if_none:'' }}">
+        </div>
+        <button class="button is-link is-ligh" type="submit">Add</button>
+        <button class="button is-small is-fullwidth" type="button" onclick="location.href='{% url 'memo:task_list' %}'">돌아가기</button>
+        </div>
+
     </form>
-    <a href="{% url 'memo:task_list' %}">Back to Task List</a>
+    <div class="block">
+
+    </div>
 </body>
 </html>
+
+
+{#<body>#}
+{#    <h1>Add Task</h1>#}
+{#    <form method="POST">#}
+{#        <div class="field">#}
+{#            {% csrf_token %}#}
+{#            {{ form.as_p }}#}
+{#        </div>#}
+{#        <button type="submit">Add</button>#}
+{#    </form>#}
+{#    <a href="{% url 'memo:task_list' %}">Back to Task List</a>#}
+{#</body>#}
