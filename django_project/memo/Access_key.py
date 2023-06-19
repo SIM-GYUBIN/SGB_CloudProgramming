@@ -3,7 +3,7 @@ import requests
 url = 'https://kauth.kakao.com/oauth/token'
 rest_api_key = '35260dcf52135612834d1b3c3ccd3f64'
 redirect_uri = 'https://example.com/oauth'
-authorize_code = '3oP6S2hNE78TGu8XKb21p4IlixCUxKyDAPHxd8CihZWCy-BgvDF229G8VuLV63Sc30T3Mgo9dGgAAAGIycWlFQ'
+authorize_code = 'WX3hfOLWPRRJgWM5OSnSGwsBOSYkgfADh4HKwSeawdKBuN3kXR2z3aeeQ4To_W7SvynM0Ao9c-wAAAGIzrs4Yg'
 
 data = {
     'grant_type':'authorization_code',
@@ -19,7 +19,7 @@ print(tokens)
 # json 저장
 import json
 
-with open("memo/kakao_code.json","w") as fp:
+with open("kakao_code.json","w") as fp:
     json.dump(tokens, fp)
 
 # json 읽어오기

@@ -14,5 +14,5 @@ class MemoConfig(AppConfig):
 
         scheduler = BackgroundScheduler()
         #scheduler.add_job(send_kakao_message, 'interval', minutes=1)  # 예시: 1분마다 실행
-        scheduler.add_job(refresh, 'interval', hours=6)  # 예시: 1분마다 실행
+        scheduler.add_job(refresh, 'interval', hours=4)  # 4시간 마다 토큰 refresh
         scheduler.start()

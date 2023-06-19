@@ -11,5 +11,7 @@ def refresh():
     tokens = response.json()
 
 
-    with open("memo/kakao_code.json","w") as fp:
+    with open("kakao_code.json","w") as fp:
         json.dump(tokens, fp)
+
+refresh()
