@@ -50,7 +50,7 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'django_cron',
-    'django_apscheduler',
+    # 'django_apscheduler',
     # 'memo.apps.MemoConfig',
 
     'allauth.socialaccount.providers.google'
