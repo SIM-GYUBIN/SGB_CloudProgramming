@@ -11,5 +11,5 @@ class MemoConfig(AppConfig):
 
     def ready(self):
         scheduler = BackgroundScheduler()
-        scheduler.add_job(refresh, 'interval', hours=4, start_date=datetime.now() + timedelta(seconds=1))
+        scheduler.add_job(refresh, 'interval', minutes=5, start_date=datetime.now() + timedelta(seconds=1))
         scheduler.start()
