@@ -3,7 +3,7 @@
 
 django로 작성, paas-ta를 통해 배포
 
-### to do list 작성 후 카카오톡으로 알림 받는 서비스 (kakako developers api)
+### to do list 작성 후 카카오톡으로 알림 받는 서비스 (kakao developers api)
 ![화면 캡처 2023-06-25 135653](https://github.com/SIM-GYUBIN/SGB_CloudProgramming/assets/89975936/069eb931-fac0-45bd-bb9a-9439121d3b18)
 ![KakaoTalk_Snapshot_20230625_135459](https://github.com/SIM-GYUBIN/SGB_CloudProgramming/assets/89975936/f1122b7e-1c59-4164-93b9-089cbc15d78c)
 
